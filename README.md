@@ -7,7 +7,7 @@ Build a real-time, resource-efficient voice activation layer for edge devices. T
 
 ## Proposed architecture
 
-![Proposed System Architecture](docs/proposed-system-architecture.png)
+![Proposed System Architecture](docs/proposed-system-architecture-new.png)
 
 The architecture separates the **always-listening edge stage** from the **triggered server stage**. Audio is captured locally, processed through lightweight preprocessing and feature extraction, classified with an INT8 TinyML model, and only after a confident wake-word decision is the subsequent audio streamed to the remote ASR service.
 
@@ -110,7 +110,7 @@ Hardware latency, CPU, RAM, power and false-activation/hour measurements are int
 ```text
 .
 ├── docs/
-│   └── proposed-system-architecture.png
+│   └── proposed-system-architecture-new.png
 ├── firmware/
 ├── edge_impulse/
 ├── matlab/
