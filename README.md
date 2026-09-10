@@ -66,6 +66,18 @@ Wake-word test metrics:
 - Recall: **100.00%**
 - F1-score: **85.71%**
 
+## MATLAB validation outputs
+The current exported INT8 model was loaded and evaluated in MATLAB. The 82-sample independent test set reproduced the reference test result: **80/82 correct (97.56%)**.
+
+### Confusion matrix
+![MATLAB INT8 Test Confusion Matrix](results/matlab/confusion_matrix.svg)
+
+### Precision, recall and F1-score
+![MATLAB Test Metrics](results/matlab/test_metrics.svg)
+
+### ML performance summary
+![MATLAB ML Performance](results/matlab/ml_summary.svg)
+
 ## INT8 optimization
 The exported model files currently available for analysis show:
 
@@ -74,6 +86,22 @@ The exported model files currently available for analysis show:
 - Model-size reduction: **61.49%**
 
 This is a model-size result, not a measured power reduction.
+
+### Model-size visualization
+![Float32 vs INT8 Model Size](results/matlab/model_optimization.svg)
+
+## Latency and power analysis
+The following figures are **initial engineering budgets**, not measured ESP32-S3 hardware results.
+
+### Wake-word latency budget
+![Latency Budget](results/matlab/latency_budget.svg)
+
+The current planning budget allocates 65 ms against the 100 ms target. Final end-to-end latency must be measured on the physical ESP32-S3.
+
+### Always-listening power budget
+![Power Budget](results/matlab/power_budget.svg)
+
+The current planning budget allocates 38 mW against the 50 mW target. Final board-level power must be measured on the physical ESP32-S3.
 
 ## Performance targets
 These are project targets and will be validated on the physical ESP32-S3 prototype:
@@ -95,6 +123,8 @@ The `matlab/` directory contains scripts for:
 - Power-budget analysis
 - Final performance summary
 
+The `results/matlab/` directory contains the corresponding visualization outputs.
+
 Hardware latency, CPU, RAM, power and false-activation/hour measurements are intentionally marked as pending until ESP32-S3 validation is completed.
 
 ## Repository structure
@@ -104,8 +134,9 @@ Hardware latency, CPU, RAM, power and false-activation/hour measurements are int
 ├── firmware/
 ├── edge_impulse/
 ├── matlab/
-├── tests/
 ├── results/
+│   └── matlab/
+├── tests/
 ├── data/
 └── README.md
 ```
@@ -128,4 +159,4 @@ Build and verify each stage independently:
 10. Final validation and documentation
 
 ## Status
-**Current stage:** Edge Impulse model exported and reproduced in MATLAB on the 82-sample test set. Physical ESP32-S3 validation is next.
+**Current stage:** Edge Impulse model exported and independently reproduced in MATLAB on the 82-sample test set. Physical ESP32-S3 validation is next.
