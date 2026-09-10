@@ -1,0 +1,28 @@
+# MATLAB
+*.asv
+*.m~
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# Build artifacts
+.pio/
+build/
+*.o
+*.elf
+*.bin
+# IDE
+.vscode/
+# OS
+.DS_Store
+Thumbs.db
+# Private/local data
+*.npy
+*.mat
+*.wav
+*.mp3
+# Model binaries (store with Git LFS/releases when finalized)
+*.lite
+*.tflite
+*.h5
