@@ -6,31 +6,10 @@ Smart India Hackathon 2026 – Problem Statement PS26172.
 Build a real-time, resource-efficient voice activation layer for edge devices. The proposed system performs custom wake-word detection locally on a microcontroller and starts audio streaming only after a confident trigger.
 
 ## Proposed architecture
-```text
-User Voice
-   ↓
-INMP441 MEMS Microphone
-   ↓
-I2S Audio Capture (16 kHz, mono)
-   ↓
-Ring Buffer / Sliding Window
-   ↓
-Energy + ZCR Fast Rejection
-   ↓
-MFE / MFCC Features
-   ↓
-Lightweight CNN / DS-CNN
-   ↓
-INT8 TFLite Micro Inference
-   ↓
-Confidence + Temporal Verification
-   ↓
-Wake Word Detected
-   ↓
-Audio Streaming → WebSocket → Remote ASR
-   ↓
-Text / Command
-```
+
+![Proposed System Architecture](docs/proposed-system-architecture.png)
+
+The architecture separates the **always-listening edge stage** from the **triggered server stage**. Audio is captured locally, processed through lightweight preprocessing and feature extraction, classified with an INT8 TinyML model, and only after a confident wake-word decision is the subsequent audio streamed to the remote ASR service.
 
 ## Current ML status
 The current Edge Impulse export uses three classes:
@@ -131,6 +110,7 @@ Hardware latency, CPU, RAM, power and false-activation/hour measurements are int
 ```text
 .
 ├── docs/
+│   └── proposed-system-architecture.png
 ├── firmware/
 ├── edge_impulse/
 ├── matlab/
